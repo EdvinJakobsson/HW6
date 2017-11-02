@@ -5,27 +5,34 @@ using namespace std;
 class Spacecraft {
 	
 	public:
-	Spacecraft(string modelType);
-	~Spacecraft();
 	
-	string getModel(){return model;}
+	//constructor and destructor
+	Spacecraft(string modelType, int modelYear);
+	~Spacecraft(){};
+	
+	//getters
+	string getModel(){return modelType;}		
 	int getModelYear() {return modelYear;}
 	double getSpeed() {return speed;}
 	double getMaxSpeed(){return maxSpeed;}
 
+	//setters
+	void setSpeed(double newSpeed);
+	void setMaxSpeed(double newMaxSpeed);
 	
-	void setModelYear(int newModelYear){modelYear = newModelYear;}
+	//functions
+	void activateHyperDrive();		//sets the spacecraft to maximum speed
+	void accelerate();				//adds 10 km/s to the speed
+	void brake();					//removes 10 km/s to the speed
 	
-	void activateHyperDrive();
-	void accelerate();
-	void brake();
-	
+	//variables
 	private:
-	int modelYear;
+	int const modelYear;
+	string const modelType;
+	
+	//velocites given in km/s
 	double speed;
 	double maxSpeed;
-	string model;
-	
 	
 	
 	
