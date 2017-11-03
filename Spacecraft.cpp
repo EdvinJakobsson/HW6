@@ -1,4 +1,18 @@
-#include "Spacecraft.h"
+/* Spacecraft.cpp
+*
+* Homework 6: Show of force
+* Edvin Jakobsson
+* 2017-11-01
+* 
+* No collaborators
+* Time: approximately 6 hours
+*
+* Defines the functions for class Spacecraft
+* Main method tests the functions
+*/
+
+
+#include "Spacecraft.h"		//include the header
 
 
 //constructor for Spacecraft
@@ -33,6 +47,9 @@ void Spacecraft::setMaxSpeed(double newMaxSpeed){
 	if(newMaxSpeed < 0) //check that new max speed is positive
 		cout << "New maximum speed request denied: Only positive speeds allowed. Current maximum speed is unchanged at: " << maxSpeed << " km/s." << endl;
 		
+	else if(newMaxSpeed < speed)	//check that current speed is not above new max speed
+			cout << "New maximum speed request of " << newMaxSpeed << " is denied: Current speed exceeds the requested maximum speed. Current maximum speed is unchanged at: " << maxSpeed << " km/s." << endl;
+	
 	else{
 		maxSpeed = newMaxSpeed; // if positive, the new max speed is accepted
 		cout << "New maximum speed request granted. New maximum speed is: " << maxSpeed << " km/s." << endl;
@@ -49,17 +66,17 @@ void Spacecraft::activateHyperDrive(){
 	else{	//Activates the hyperdrive, i.e. sets the speed to maximum speed
 		speed = maxSpeed;
 		cout << "Hyperdrive activated..." << endl;
-		cout << "Hyperdrive complete. Maximum speed of: " << speed << " km/s reached." << endl;
+		cout << "Hyperdrive complete. Maximum speed reached. Current speed at: " << speed << " km/s." << endl;
 	}
 }
 
 //function: Accelerate (Increases the speed by 10)
 void Spacecraft::accelerate(){
 	
-	if(speed = maxSpeed)	//check so that speed is not already at maximum
+	if(speed == maxSpeed)	//check so that speed is not already at maximum
 		cout << "Acceleration request denied: Ship is already at maximum speed of: " << speed << " km/s." << endl;
 	
-	if(speed < maxSpeed-10){	//check if the new speed is less than maximum speed
+	else if(speed < maxSpeed-10){	//check if the new speed is less than maximum speed
 	speed += 10;	//increase speed by 10
 	cout << "Acceleration request granted. New speed is: " << speed << " km/s." << endl;
 	}
@@ -93,32 +110,27 @@ int main(){
 	
 	Spacecraft *sp = new Spacecraft("Destroyer", 2974);		//create new object of class Spacecraft
 		
-	cout << sp->getModel() << ", " << sp->getModelYear() << endl;	//print model name and model year
-	
-	cout << "Current maximum speed: " << sp->getMaxSpeed() << " km/s. " << endl;	//print max speed
-		
-	cout << "Current speed: " << sp->getSpeed() << " km/s. " << endl;				//print current speed
+	cout << sp->getModel() << ", " << sp->getModelYear() << endl;				//print model name and model year	
+	cout << "Current maximum speed: " << sp->getMaxSpeed() << " km/s. " << endl;//print max speed		
+	cout << "Current speed: " << sp->getSpeed() << " km/s. " << endl;			//print current speed
 	
 	sp->setMaxSpeed(400);		//set new max speed to 400
+	sp->activateHyperDrive();	//test hyperdrive	
+	sp->activateHyperDrive();	//test it again
 	
-	sp->accelerate();
-	
-	sp->activateHyperDrive();
-	
-	sp->activateHyperDrive();
-	
+	//a few more things that will be denied
+	sp->setMaxSpeed(40);		//try to set max speed below current speed
 	sp->setSpeed(-777.4);		//try to set negative speed
-	
 	sp->setSpeed(500);			//try to set speed above max speed
 
-	sp->setSpeed(sp->getMaxSpeed()-27.2);	//set new speed slighty below max speed
 
-for(int i=0; i<4; i++)	//accelerate to and beyond max speed to see what happens
+	sp->setSpeed(sp->getMaxSpeed()-27.2);	//set new speed slighty below max speed
+	for(int i=0; i<4; i++)	//accelerate to and beyond max speed to see what happens
 	sp->accelerate();
 	
-	sp->setSpeed(24.2);	//set new speed slightly above zero
 	
-	for(int i=0; i<4; ++i)	//brake until and past zero to see what happens
+	sp->setSpeed(24.2);		//set new speed slightly above zero
+	for(int i=0; i<4; ++i)	//brake to and past zero to see what happens
 	sp->brake();
 	
 	cout << "Current speed: " << sp->getSpeed() << " km/s. " << endl;	//print current speed

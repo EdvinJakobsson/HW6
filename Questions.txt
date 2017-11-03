@@ -1,0 +1,25 @@
+1.
+I have had a little trouble answering this question, since it does not seem to change much wether I use public variables and change them, or if I allow access to a function that can change them.
+One difference is of course that I can add restrictions to my functions in order to prevent values that would not work within the program.
+Another reason might be because it makes debugging easier when you can enclos a class as working. Then, no outside code can mess this class up.
+Also, other programs could be reliable on the public variables and functions in your code, but not private ones. So you can comfortably change the structure of private member data without running the risk of having to change code elsewere.
+
+
+2.
+
+A spacecraft is for example a sort of "construction project" available at a space station. It could inherit the base class "Construction project".
+
+
+3.
+
+Yes, all kinds of different spacecrafts. We could have everything from X-wings to satellites.
+
+
+4.
+
+Most difficult was to actually find the time to do it. With application deadlines and complement deadlines for previous homework, as well as the last project of the course while the courses for the next period has already started.
+The actual excercise was not very hard, but quite fun and educational.
+
+5.
+
+Add some more features to the object, as well as determining a location and a direction of momentum. It could also be improved by the option of different sub-classes with pre-determined stats and features, such as different gunships and transport ships.
