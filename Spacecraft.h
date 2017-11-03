@@ -29,10 +29,8 @@ class Spacecraft {
 	private:
 	int const modelYear;
 	string const modelType;
-	
-	//velocites given in km/s
-	double speed;
-	double maxSpeed;
+	double speed;		//velocites given in km/s
+	double maxSpeed;	//velocites given in km/s
 	
 	
 	
